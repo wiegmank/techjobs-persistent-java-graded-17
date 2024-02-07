@@ -8,7 +8,9 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Employer extends AbstractEntity {
 
+    //only using @NotNull did not work as intended, tests require @NotEmpty
     @NotNull
+    @NotEmpty
     @Size(max = 75)
     private String location;
 
