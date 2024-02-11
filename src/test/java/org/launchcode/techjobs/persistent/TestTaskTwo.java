@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+//import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import mockit.Expectations;
 import mockit.Mocked;
@@ -24,8 +25,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.util.Arrays;
@@ -544,13 +547,13 @@ public class TestTaskTwo extends AbstractTest {
 //    /*
 //    * Tests SQL query for task 2
 //    * */
-//    @Test
-//    public void testSqlQuery() throws IOException {
-//        String queryFileContents = getFileContents("queries.sql");
-//
-//        Pattern queryPattern = Pattern.compile("SELECT\\s+name\\s+FROM\\s+employer\\s+WHERE\\s+location\\s+=\\s+\"St.\\s+Louis\\s+City\";", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
-//        Matcher queryMatcher = queryPattern.matcher(queryFileContents);
-//        boolean queryFound = queryMatcher.find();
-//        assertTrue(queryFound, "Task 2 SQL query is incorrect. Test your query against your database to find the error.");
-//    }
+    @Test
+    public void testSqlQuery() throws IOException {
+        String queryFileContents = getFileContents("queries.sql");
+
+        Pattern queryPattern = Pattern.compile("SELECT\\s+name\\s+FROM\\s+employer\\s+WHERE\\s+location\\s+=\\s+\"St.\\s+Louis\\s+City\";", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+        Matcher queryMatcher = queryPattern.matcher(queryFileContents);
+        boolean queryFound = queryMatcher.find();
+        assertTrue(queryFound, "Task 2 SQL query is incorrect. Test your query against your database to find the error.");
+    }
 }
